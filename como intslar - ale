@@ -1,0 +1,24 @@
+Promero ver si esta habilitado el modulo "intl" en php.ini (y todos los modulos que aimeos necesita)
+al descargar el proyecto, si tira error de tamaño de caracter agregar las lineas en 
+(https://github.com/aimeos/aimeos-laravel#important-notice)
+
+appServiceProvider.php
+
+use Illuminate\Support\Facades\Schema;
+
+ public function boot()
+    {
+        Schema::defaultStringLength(191);
+    }
+
+ una vez que finalizar realizar la siguiente secuencia:
+php artisan vendor:publish --all
+php artisan migrate
+php artisan aimeos:setup --option=setup/default/demo:1
+php artisan aimeos:cache
+
+---> SI tira error el comando php artisan aimeos:setup --option=setup/default/demo:1, borrar la tabla users y volver a ejecutar
+
+
+///// para activar el backend segui los pasos de 
+https://github.com/aimeos/aimeos-laravel#admin
